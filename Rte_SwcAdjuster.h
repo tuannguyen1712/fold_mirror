@@ -9,5 +9,6 @@ typedef uint8 buttonValues[NUM_BUTTONS];
 
 FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void);
 FUNC(Std_ReturnType, AUTOMATIC) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button );
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_Dio_ReadChannelGroup( VAR(AppIo_IoHwAb_Q_AdcIdType, AUTOMATIC) id, P2VAR(AppIo_IoHwAb_Q_AdcGroupStatusType, AUTOMATIC, RTE_APPL_DATA) value );
 
 #endif

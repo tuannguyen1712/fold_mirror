@@ -22,13 +22,14 @@
 FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
     VAR(buttonValues, AUTOMATIC) button;
 
-    button[0] = Dio_ReadChannel(DioChannelId1);
-    button[1] = Dio_ReadChannel(DioChannelId2);
-    button[2] = Dio_ReadChannel(DioChannelId3);
-    button[3] = Dio_ReadChannel(DioChannelId4);
-    button[4] = Dio_ReadChannel(DioChannelId5);
-    button[5] = Dio_ReadChannel(DioChannelId6);
-    button[6] = Dio_ReadChannel(DioChannelId7);
+    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId1, &button[0]);
+    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId2, &button[1]);
+    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId3, &button[2]);
+    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId4, &button[3]);
+    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId5, &button[4]);
+    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId6, &button[5]);
+    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId7, &button[6]);
+    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId8, &button[7]);
 
     Rte_Write_PP_Position_ButtonArray(&button);
 }
@@ -37,10 +38,6 @@ VAR(buttonValues, AUTOMATIC) buttonArrayVal;
 
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button ) {
     VAR (Std_ReturnType, AUTOMIC) ret_val = RTE_E_OK
-    if (button == NULL) {
-        ret_val = RTE_E_INVALID;
-        return ret_val;
-    }
 
     for (VAR(uint8, AUTOMATIC) i = 0; i < NUM_BUTTONS; i++)
     {
@@ -50,4 +47,13 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_PP_Position_ButtonArray
     return ret_val;
 }
 
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_Dio_ReadChannel( VAR(AppIo_IoHwAb_Q_AdcIdType, AUTOMATIC) id, P2VAR(AppIo_IoHwAb_Q_AdcGroupStatusType, AUTOMATIC, RTE_APPL_DATA) value ) {
+    VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
+    if (value == NULL) {
+        ret_val = RTE_E_INVALID;
+        return ret_val;
+    }
+    *value = Dio_ReadChannel( id );
+    return ret_val;
+}
 
