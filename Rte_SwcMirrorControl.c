@@ -1,3 +1,19 @@
+/******************************************************************************/
+/* Copyright   : Autosar_02_G2                                                */
+/* System Name : AUTOSAR BSW                                                  */
+/* File Name   : Rte_SwcMirrorControl.c                                       */
+/* Version     : v2.2.2                                                       */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
+/* Note        :                                                              */
+/******************************************************************************/
+
+/*----------------------------------------------------------------------------*/
+/* include headers                                                            */
+/*----------------------------------------------------------------------------*/
+#include "Os.h"
+#include "Rte_Internal.h"
+#include "Com.h"
 #include "Rte_SwcMirrorControl.h"
 
 extern VAR(buttonValues, AUTOMATIC) buttonArrayVal;
@@ -10,6 +26,12 @@ VAR(buttonValues, AUTOMATIC) pitch_upper_limit;
 VAR(buttonValues, AUTOMATIC) pitch_lower_limit;
 VAR(buttonValues, AUTOMATIC) pitch_change_value;
 
+VAR(uint8, AUTOMATIC) fold;                     // fold angle value
+VAR(uint8, AUTOMATIC) l_yaw;                    // left mirror yaw angle value
+VAR(uint8, AUTOMATIC) l_pitch;                  // left mirror pitch angle value
+VAR(uint8, AUTOMATIC) r_yaw;                    // right mirror yaw angle value
+VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle value
+
 FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void) 
 {
     
@@ -18,12 +40,6 @@ FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void)
 FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void) 
 {
     VAR(buttonValues, AUTOMATIC) button;
-    
-    VAR(uint8, AUTOMATIC) fold;                 // fold angle value
-    VAR(uint8, AUTOMATIC) l_yaw;                // left mirror yaw angle value
-    VAR(uint8, AUTOMATIC) l_pitch;              // left mirror pitch angle value
-    VAR(uint8, AUTOMATIC) r_yaw;                // right mirror yaw angle value
-    VAR(uint8, AUTOMATIC) r_pitch;              // right mirror pitch angle value
 
     Rte_Write_PP_Position_ButtonArray(&button);
 

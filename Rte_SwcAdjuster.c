@@ -1,4 +1,21 @@
+/******************************************************************************/
+/* Copyright   : Autosar_02_G2                                                */
+/* System Name : AUTOSAR BSW                                                  */
+/* File Name   : Rte_SwcAdjuster.c                                            */
+/* Version     : v2.2.2                                                       */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
+/* Note        :                                                              */
+/******************************************************************************/
+
+/*----------------------------------------------------------------------------*/
+/* include headers                                                            */
+/*----------------------------------------------------------------------------*/
+#include "Os.h"
+#include "Rte_Internal.h"
+#include "Com.h"
 #include "Rte_SwcAdjuster.h"
+
 
 
 /*  Use button to determine use control. BTNx = 1 (press), = 0 (release)

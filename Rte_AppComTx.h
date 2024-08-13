@@ -1,7 +1,7 @@
 /******************************************************************************/
-/* Copyright   : SCSK Corporation                                             */
+/* Copyright   : Autosar_02_G2                                                */
 /* System Name : AUTOSAR BSW                                                  */
-/* File Name   : Rte_AppComTxRx.h                                             */
+/* File Name   : Rte_AppComTx.h                                               */
 /* Version     : v2.2.2                                                       */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
 /* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
@@ -44,7 +44,7 @@ extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_RightPi
 
 #define AppComTxRx_START_SEC_CODE
 #include "AppComTxRx_MemMap.h"
-FUNC(void, AppComTxRx_CODE) App_ComTxRx( VAR(void, AUTOMATIC) );
+FUNC(void, AppComTxRx_CODE) App_ComTx( VAR(void, AUTOMATIC) );
 #define AppComTxRx_STOP_SEC_CODE
 #include "AppComTxRx_MemMap.h"
 #define RTE_RUNNABLE_Run_AppComTxRx App_ComTxRx

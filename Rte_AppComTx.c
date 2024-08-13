@@ -1,7 +1,7 @@
 /******************************************************************************/
 /* Copyright   : Autosar_02_G2                                                */
 /* System Name : AUTOSAR BSW                                                  */
-/* File Name   : Rte_AppComTxRx.c                                             */
+/* File Name   : Rte_AppComTx.c                                             */
 /* Version     : v2.2.2                                                       */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
 /* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
@@ -48,7 +48,7 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_Fold_Signal( V
     VAR(Std_ReturnType, AUTOMATIC) ret;
     VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
 
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1__SetAngle_Fold_Signal, &tmp_data );
+    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_Fold_Signal, &tmp_data );
     switch( ret ) {
     case COM_SERVICE_NOT_AVAILABLE:
         ret_val = RTE_E_COM_STOPPED;
@@ -83,7 +83,7 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_LeftYaw_Signal
     VAR(Std_ReturnType, AUTOMATIC) ret;
     VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
 
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1__SetAngle_LeftYaw_Signal, &tmp_data );
+    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_LeftYaw_Signal, &tmp_data );
     switch( ret ) {
     case COM_SERVICE_NOT_AVAILABLE:
         ret_val = RTE_E_COM_STOPPED;
@@ -118,7 +118,7 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_LeftPitch_Sign
     VAR(Std_ReturnType, AUTOMATIC) ret;
     VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
 
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1__SetAngle_LeftPitch_Signal, &tmp_data );
+    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_LeftPitch_Signal, &tmp_data );
     switch( ret ) {
     case COM_SERVICE_NOT_AVAILABLE:
         ret_val = RTE_E_COM_STOPPED;
@@ -153,7 +153,7 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_RightYaw_Signa
     VAR(Std_ReturnType, AUTOMATIC) ret;
     VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
 
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1__SetAngle_RightYaw_Signal, &tmp_data );
+    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_RightYaw_Signal, &tmp_data );
     switch( ret ) {
     case COM_SERVICE_NOT_AVAILABLE:
         ret_val = RTE_E_COM_STOPPED;
@@ -188,7 +188,7 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_RightPitch_Sig
     VAR(Std_ReturnType, AUTOMATIC) ret;
     VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
 
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1__SetAngle_RightPitch_Signal, &tmp_data );
+    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_RightPitch_Signal, &tmp_data );
     switch( ret ) {
     case COM_SERVICE_NOT_AVAILABLE:
         ret_val = RTE_E_COM_STOPPED;

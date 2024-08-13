@@ -1,3 +1,13 @@
+/******************************************************************************/
+/* Copyright   : Autosar_02_G2                                                */
+/* System Name : AUTOSAR BSW                                                  */
+/* File Name   : Rte_SwcMirrorControl.h                                       */
+/* Version     : v2.2.2                                                       */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
+/* Note        :                                                              */
+/******************************************************************************/
+
 #ifndef RTE_SWCMIRRORCONTROL_H
 #define RTE_SWCMIRRORCONTROL_H
 

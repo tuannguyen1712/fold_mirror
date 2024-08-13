@@ -1,7 +1,7 @@
 /******************************************************************************/
 /* Copyright   : Autosar_02_G2                                                */
 /* System Name : AUTOSAR BSW                                                  */
-/* File Name   : Rte_AppComTxRx.c                                             */
+/* File Name   : Rte_App.c                                                    */
 /* Version     : v2.2.2                                                       */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
 /* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
@@ -40,6 +40,20 @@
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 
+extern VAR(buttonValues, AUTOMATIC) yaw_upper_limit;
+extern VAR(buttonValues, AUTOMATIC) yaw_lower_limit;
+extern VAR(buttonValues, AUTOMATIC) yaw_change_value;
+
+extern VAR(buttonValues, AUTOMATIC) pitch_upper_limit;
+extern VAR(buttonValues, AUTOMATIC) pitch_lower_limit;
+extern VAR(buttonValues, AUTOMATIC) pitch_change_value;
+
+extern VAR(uint8, AUTOMATIC) fold;                     // fold angle value
+extern VAR(uint8, AUTOMATIC) l_yaw;                    // left mirror yaw angle value
+extern VAR(uint8, AUTOMATIC) l_pitch;                  // left mirror pitch angle value
+extern VAR(uint8, AUTOMATIC) r_yaw;                    // right mirror yaw angle value
+extern VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle value
+
 TASK (ModeCtrlTask_10ms) {
     VAR(EventMaskType, AUTOMATIC) Event;
 
@@ -59,10 +73,6 @@ TASK (ModeCtrlTask_10ms) {
         }
     }
 }
-
-#define RTE_STOP_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-
 
 
 /* End of Rte_Partition_EcucPartition_0.c */
