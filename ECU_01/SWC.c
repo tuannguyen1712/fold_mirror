@@ -60,7 +60,7 @@ FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
     Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId6, &button[5]);
     Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId7, &button[6]);
 
-    Rte_Write_PP_Position_ButtonArray(&button);
+    Rte_Write_PP_Position_ButtonArray(button);
     // scheduled for runnale UpdatePossition
     SetEvent(TASK_CONTROL, OSEvent_UpdatePosition);
 }

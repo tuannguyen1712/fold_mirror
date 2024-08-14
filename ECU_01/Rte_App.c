@@ -44,7 +44,7 @@ extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_UpdatePossition( VAR(void, AUTOM
 
 TASK (TASK_INIT) {
     Rte_GetParram();
-    ActivateTask(TASK_CONTROL);
+    // ActivateTask(TASK_CONTROL);
     TermiateTask();
 }
 
@@ -55,13 +55,13 @@ TASK (TASK_CONTROL) {
     {
         (VAR(void, AUTOMATIC))WaitEvent( OSEvent_10ms_GetOption | OSEvent_UpdatePosition );
         Event = 0U;
-        (VAR(void, AUTOMATIC))GetEvent( OsTask_ModeCtrlTask_10ms, &Event );
+        (VAR(void, AUTOMATIC))GetEvent( TASK_CONTROL, &Event );
 
         if( (Event & OSEvent_10ms_GetOption) > 0U ) {
             (VAR(void, AUTOMATIC))ClearEvent( OSEvent_10ms_GetOption );
             Rte_GetUserOption_10ms();
         } 
-        else if ( (Event & OSEvent_UpdatePosition) > 0U ) {
+        if ( (Event & OSEvent_UpdatePosition) > 0U ) {
             (VAR(void, AUTOMATIC))ClearEvent( OSEvent_UpdatePosition );
             Rte_UpdatePossition();
         }
