@@ -1,7 +1,7 @@
 /******************************************************************************/
 /* Copyright   : Autosar_02_G2                                                */
 /* System Name : AUTOSAR BSW                                                  */
-/* File Name   : Rte_AppComTx.c                                             */
+/* File Name   : Rte_SwcMirrorControl.c                                       */
 /* Version     : v2.2.2                                                       */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
 /* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
@@ -14,22 +14,42 @@
 #include "Os.h"
 #include "Rte_Internal.h"
 #include "Com.h"
-#include "Rte_AppComTx.h"
+#include "Rte_SwcMirrorControl.h"
 
-/* AUTOSAR Version Check : Com */
-#if ( ( COM_AR_RELEASE_MINOR_VERSION != RTE_AR_RELEASE_MINOR_VERSION )\
-|| ( COM_AR_RELEASE_MAJOR_VERSION != RTE_AR_RELEASE_MAJOR_VERSION ) )
-#error "AUTOSAR Release Version error between Com and RTE." 
-#endif
+extern VAR(buttonValues, AUTOMATIC) buttonArrayVal;
 
-/*----------------------------------------------------------------------------*/
-/* variables                                                                  */
-/*----------------------------------------------------------------------------*/
+VAR(buttonValues, AUTOMATIC) yaw_upper_limit;
+VAR(buttonValues, AUTOMATIC) yaw_lower_limit;
+VAR(buttonValues, AUTOMATIC) yaw_change_value;
 
-/*----------------------------------------------------------------------------*/
-/* functions and function style macros                                        */
-/*----------------------------------------------------------------------------*/
-extern FUNC(void, AUTOMATIC) Rte_Memcpy( P2VAR(void, AUTOMATIC, RTE_APPL_DATA) dst, P2CONST(void, AUTOMATIC, RTE_APPL_DATA) src, CONST(uint32, AUTOMATIC) size);
+VAR(buttonValues, AUTOMATIC) pitch_upper_limit;
+VAR(buttonValues, AUTOMATIC) pitch_lower_limit;
+VAR(buttonValues, AUTOMATIC) pitch_change_value;
+
+VAR(uint8, AUTOMATIC) fold;                     // fold angle value
+VAR(uint8, AUTOMATIC) l_yaw;                    // left mirror yaw angle value
+VAR(uint8, AUTOMATIC) l_pitch;                  // left mirror pitch angle value
+VAR(uint8, AUTOMATIC) r_yaw;                    // right mirror yaw angle value
+VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle value
+
+FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void) 
+{
+    
+}
+
+FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) button ) {
+    VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
+    if (button == NULL) {
+        ret_val =  RTE_E_INVALID;
+        return ret_val;
+    }
+
+    *button = buttonArrayVal;
+    return ret_val;
+}
+
+
+// send Signal
 
 /******************************************************************************/
 /* ModuleID    :                                                              */
@@ -204,30 +224,12 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_RightPitch_Sig
     return ret_val;
 }
 
-#define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
-
-extern FUNC(void, AppComTxRx_CODE) App_ComTxRx( VAR(void, AUTOMATIC) );
-/******************************************************************************/
-/* ModuleID    :                                                              */
-/* ServiceID   :                                                              */
-/* Name        : Rte_App_ComTx                                                */
-/* Param       :                                                              */
-/* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Note        :                                                              */
-/******************************************************************************/
-#define RTE_START_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-FUNC(void, RTE_CODE_EcucPartition_0) Rte_App_ComTx( VAR(void, AUTOMATIC) ) {
-
-    App_ComTx();
-
+FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetParram( VAR(void, AUTOMATIC) ) {
+    GetParram();
 }
-#define RTE_STOP_SEC_CODE_EcucPartition_0
+
 #include "Rte_MemMap.h"
-
-
-
-/* End of Rte_AppComTxRx.c */
+FUNC(void, RTE_CODE_EcucPartition_0) Rte_UpdatePossition( VAR(void, AUTOMATIC) ) {
+    UpdatePossition();
+}

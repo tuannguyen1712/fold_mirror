@@ -37,24 +37,18 @@
 /* Author      : QINeS Ecuc Generator(Java)                                   */
 /* Note        :                                                              */
 /******************************************************************************/
-#define RTE_START_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
 
-extern VAR(buttonValues, AUTOMATIC) yaw_upper_limit;
-extern VAR(buttonValues, AUTOMATIC) yaw_lower_limit;
-extern VAR(buttonValues, AUTOMATIC) yaw_change_value;
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetParram( VAR(void, AUTOMATIC) );
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetUserOption_10ms( VAR(void, AUTOMATIC) );
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_UpdatePossition( VAR(void, AUTOMATIC) );
 
-extern VAR(buttonValues, AUTOMATIC) pitch_upper_limit;
-extern VAR(buttonValues, AUTOMATIC) pitch_lower_limit;
-extern VAR(buttonValues, AUTOMATIC) pitch_change_value;
+TASK (TASK_INIT) {
+    Rte_GetParram();
+    ActivateTask(TASK_CONTROL);
+    TermiateTask();
+}
 
-extern VAR(uint8, AUTOMATIC) fold;                     // fold angle value
-extern VAR(uint8, AUTOMATIC) l_yaw;                    // left mirror yaw angle value
-extern VAR(uint8, AUTOMATIC) l_pitch;                  // left mirror pitch angle value
-extern VAR(uint8, AUTOMATIC) r_yaw;                    // right mirror yaw angle value
-extern VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle value
-
-TASK (ModeCtrlTask_10ms) {
+TASK (TASK_CONTROL) {
     VAR(EventMaskType, AUTOMATIC) Event;
 
     while( 1 )
@@ -65,11 +59,11 @@ TASK (ModeCtrlTask_10ms) {
 
         if( (Event & OSEvent_10ms_GetOption) > 0U ) {
             (VAR(void, AUTOMATIC))ClearEvent( OSEvent_10ms_GetOption );
-            GetUserOption_10ms();
+            Rte_GetUserOption_10ms();
         } 
         else if ( (Event & OSEvent_UpdatePosition) > 0U ) {
             (VAR(void, AUTOMATIC))ClearEvent( OSEvent_UpdatePosition );
-            UpdatePossition();
+            Rte_UpdatePossition();
         }
     }
 }
