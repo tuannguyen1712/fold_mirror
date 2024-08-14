@@ -18,7 +18,7 @@
 
 
 
-/*  Use button to determine use control. BTNx = 1 (press), = 0 (release)
+/*  Use button to determine user control. BTNx = 1 (press), = 0 (release)
     - Use BTN1 and BTN2  to choose what mirror want to control: 
         + BTN1 = 1, BTN2 = 0: Left mirror
         + BTN1 = 0, BTN2 = 1: Right mirror
