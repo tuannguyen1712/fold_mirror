@@ -1,3 +1,13 @@
+/******************************************************************************/
+/* Copyright   : Autosar_02_G2                                                */
+/* System Name : AUTOSAR BSW                                                  */
+/* File Name   : SWC.c                                                        */
+/* Version     : v2.2.2                                                       */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
+/* Note        :                                                              */
+/******************************************************************************/
+
 #include "Rte_Adjuster.h"
 #include "Rte_MirrorControl.h"
 
@@ -177,3 +187,4 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
     Rte_Write_SetAngle_RightPitch_Signal( r_pitch );
 }
 
+/* End of SWC.c */
