@@ -22,3 +22,5 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Write_PP_Position_ButtonArray( VAR(buttonVal
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_Dio_ReadChannel( VAR(uint8, AUTOMATIC) id, P2VAR(uint8, AUTOMATIC, RTE_APPL_DATA) value );
 
 #endif
+
+/* End of Rte_Adjuster.h */

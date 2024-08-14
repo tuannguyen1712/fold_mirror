@@ -69,4 +69,4 @@ TASK (TASK_CONTROL) {
 }
 
 
-/* End of Rte_Partition_EcucPartition_0.c */
+/* End of Rte_App.c */

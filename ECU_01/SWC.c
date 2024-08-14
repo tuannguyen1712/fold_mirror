@@ -58,7 +58,7 @@ FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
 FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void) 
 {
     VAR(buttonValues, AUTOMATIC) button;
-    VAR(uint8, AUTOMATIC) is_change;
+    VAR(uint8, AUTOMATIC) is_change = 0;
 
     Rte_Read_RP_Setting_ButtonArray(&button);
 

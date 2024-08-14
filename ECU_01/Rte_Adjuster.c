@@ -44,3 +44,5 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_Dio_ReadChannel( V
 FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetUserOption_10ms(void) {
     GetUserOption_10ms();
 }
+
+/* End of Rte_Adjuster.c */

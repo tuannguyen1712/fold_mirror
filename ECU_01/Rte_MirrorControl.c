@@ -233,3 +233,5 @@ FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetParram( VAR(void, AUTOMATIC) ) {
 FUNC(void, RTE_CODE_EcucPartition_0) Rte_UpdatePossition( VAR(void, AUTOMATIC) ) {
     UpdatePossition();
 }
+
+/* End of Rte_MirrorControl.c */
