@@ -52,13 +52,13 @@ FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
     VAR(buttonValues, AUTOMATIC) button;
     
     // read pin state
-    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId1, &button[0]);
-    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId2, &button[1]);
-    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId3, &button[2]);
-    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId4, &button[3]);
-    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId5, &button[4]);
-    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId6, &button[5]);
-    Rte_Call_RP_IO_Dio_ReadChannel(DioChannelId7, &button[6]);
+    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId1, &button[0]);
+    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId2, &button[1]);
+    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId3, &button[2]);
+    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId4, &button[3]);
+    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId5, &button[4]);
+    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId6, &button[5]);
+    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId7, &button[6]);
 
     Rte_Write_PP_Position_ButtonArray(button);
     // scheduled for runnale UpdatePossition

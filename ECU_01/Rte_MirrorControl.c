@@ -15,16 +15,18 @@
 #include "Rte_Internal.h"
 #include "Com.h"
 #include "Rte_SwcMirrorControl.h"
+#include "DataType.h"
+
 
 extern VAR(buttonValues, AUTOMATIC) buttonArrayVal;
 
-VAR(buttonValues, AUTOMATIC) yaw_upper_limit;
-VAR(buttonValues, AUTOMATIC) yaw_lower_limit;
-VAR(buttonValues, AUTOMATIC) yaw_change_value;
+VAR(uint8, AUTOMATIC) yaw_upper_limit;
+VAR(uint8, AUTOMATIC) yaw_lower_limit;
+VAR(uint8, AUTOMATIC) yaw_change_value;
 
-VAR(buttonValues, AUTOMATIC) pitch_upper_limit;
-VAR(buttonValues, AUTOMATIC) pitch_lower_limit;
-VAR(buttonValues, AUTOMATIC) pitch_change_value;
+VAR(uint8, AUTOMATIC) pitch_upper_limit;
+VAR(uint8, AUTOMATIC) pitch_lower_limit;
+VAR(uint8, AUTOMATIC) pitch_change_value;
 
 VAR(uint8, AUTOMATIC) fold;                     // fold angle value
 VAR(uint8, AUTOMATIC) l_yaw;                    // left mirror yaw angle value
@@ -44,7 +46,10 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonVal
         return ret_val;
     }
 
-    *button = buttonArrayVal;
+    for (VAR(uint8, AUTOMATIC) i = 0; i < NUM_BUTTONS; i++)
+    {
+        button[i] = buttonArrayVal[i];
+    }
     return ret_val;
 }
 

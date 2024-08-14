@@ -13,13 +13,9 @@
 
 #include "Rte_Type.h"
 
-#define NUM_BUTTONS 7
-
-typedef uint8 buttonValues[NUM_BUTTONS];
-
 FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetUserOption_10ms(void);
 FUNC(Std_ReturnType, AUTOMATIC) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button );
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_Dio_ReadChannel( VAR(uint8, AUTOMATIC) id, P2VAR(uint8, AUTOMATIC, RTE_APPL_DATA) value );
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IoHwAb_Dio_ReadChannel( VAR(uint8, AUTOMATIC) id, P2VAR(uint8, AUTOMATIC, RTE_APPL_DATA) value );
 
 #endif
 
