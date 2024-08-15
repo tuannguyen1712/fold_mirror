@@ -36,10 +36,69 @@ extern VAR(buttonValues, AUTOMATIC) pitch_change_value;
         + BTN7 = 1: decrease Pitch Angle
 */
 
-FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void) {
+FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void)   
+{ 
+/*
+extern VAR(buttonValues, AUTOMATIC) buttonArrayVal;
+
+VAR(uint8, AUTOMATIC) yaw_upper_limit;
+VAR(uint8, AUTOMATIC) yaw_lower_limit;
+VAR(uint8, AUTOMATIC) yaw_change_value;
+
+VAR(uint8, AUTOMATIC) pitch_upper_limit;
+VAR(uint8, AUTOMATIC) pitch_lower_limit;
+VAR(uint8, AUTOMATIC) pitch_change_value;
+
+VAR(uint8, AUTOMATIC) fold;                     // fold angle value
+VAR(uint8, AUTOMATIC) l_yaw;                    // left mirror yaw angle value
+VAR(uint8, AUTOMATIC) l_pitch;                  // left mirror pitch angle value
+VAR(uint8, AUTOMATIC) r_yaw;                    // right mirror yaw angle value
+VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle value
+*/
+
     // read data from NV
 
+    #define MY_NVM_BLOCK_ID 1 // Example Block ID
+
+    FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_NV_PreviousNvValue(NvM_BlockIdType BlockId, uint8* DataBuffer)
+    {
+        // Define the function to read a block from NVM
+            NvM_ReturnType result = RTE_E_OK;
+
+            // Call the NvM_ReadBlock function with the specified BlockId, buffer, and length
+            result = NvM_ReadBlock(BlockId, DataBuffer);
+
+            // Handle the return value to check if the operation was successful
+            return result;
+
+    }
+
+    FUNC(NvM_ReturnType, RTE_CODE_EcucPartion_0) Rte_Write_NV_LastNvValue(NvM_BlockIdType BlockId, const uint8* DataBuffer)
+    {
+        // Call the NvM_WriteBlock function with the specified BlockId, buffer, and length
+        NvM_ReturnType result = NvM_WriteBlock(BlockId, DataBuffer);
+
+        // Handle the return value to check if the operation was successful
+        if (result != NVM_REQ_OK) {
+        // Error handling can be implemented here: log error, retry the operation, .v.v
+        // Example: Log the error, retry the operation, etc.
+        }
+
+        return result;
+
+    }
+
+
     // read data from ParamSWC
+
+    FUNC(void, RTE_CODE_EcucPartition_0) Rte_Read_RP_Parameter_Limit_value(const ParamConfig* config, AUTOSAR_Angle* Limit_value)
+    {
+        yaw_upper_limit = config->yaw_upper_limit;
+        yaw_lower_limit = config->yaw_lower_limit;
+        yaw_change_value = config->yaw_change_value;
+
+    }
+
 }
 
 FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
@@ -168,7 +227,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
     }
 
     // Update new data to NVM
-    if (is_change) {
+    if (is_change) 
+    {  
+
 
     }
 
