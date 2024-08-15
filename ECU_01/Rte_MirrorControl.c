@@ -83,7 +83,7 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_AngleValue_Sig
     ret = Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_LeftPitch, &data.left_pitch_angle );
     ret = Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_RightYaw, &data.right_yaw_angle );
     ret = Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_RightPitch, &data.right_pitch_angle );
-    ret = Com_SendSignalGroup(ComConf_ComSignalGroup_ComISignal_HS_CAN1_SetAngle_RightPitch)
+    ret = Com_SendSignalGroup(ComConf_ComSignalGroup_ComISignal_HS_CAN1_SetAngle)
 
     switch( ret ) {
     case COM_SERVICE_NOT_AVAILABLE:
