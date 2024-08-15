@@ -17,22 +17,7 @@
 #include "Rte_SwcMirrorControl.h"
 #include "DataType.h"
 
-
 extern VAR(buttonValues, AUTOMATIC) buttonArrayVal;
-
-VAR(uint8, AUTOMATIC) yaw_upper_limit;
-VAR(uint8, AUTOMATIC) yaw_lower_limit;
-VAR(uint8, AUTOMATIC) yaw_change_value;
-
-VAR(uint8, AUTOMATIC) pitch_upper_limit;
-VAR(uint8, AUTOMATIC) pitch_lower_limit;
-VAR(uint8, AUTOMATIC) pitch_change_value;
-
-VAR(uint8, AUTOMATIC) fold;                     // fold angle value
-VAR(uint8, AUTOMATIC) l_yaw;                    // left mirror yaw angle value
-VAR(uint8, AUTOMATIC) l_pitch;                  // left mirror pitch angle value
-VAR(uint8, AUTOMATIC) r_yaw;                    // right mirror yaw angle value
-VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle value
 
 /******************************************************************************/
 /* ModuleID    :                                                              */
@@ -42,6 +27,7 @@ VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle valu
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
 /* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Descriptor  : Receive status of buttons from Setting Port                  */
 /* Note        :                                                              */
 /******************************************************************************/
 
@@ -63,11 +49,56 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonVal
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
+/* Name        : Rte_Call_NV_PreviousNvValue                                  */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Descriptor  : Read data from NV block                                      */
+/* Note        :                                                              */
+/******************************************************************************/
+
+FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_NV_NvM_ReadBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
+{
+    VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
+
+    // Call the NvM_ReadBlock function with the specified BlockId, buffer, and length
+    ret_val = NvM_ReadBlock(BlockId, DataBuffer);
+
+    // Handle the return value to check if the operation was successful
+    return ret_val;
+
+}
+
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Call_NV_NvM_WriteBlock                                   */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Descriptor  : Write data to NV block                                       */
+/* Note        :                                                              */
+/******************************************************************************/
+
+FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_NV_NvM_WriteBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2CONST(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
+{
+    VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
+    // Call the NvM_WriteBlock function with the specified BlockId, buffer
+    ret_val = NvM_WriteBlock(BlockId, DataBuffer);
+    // Handle the return value to check if the operation was successful
+    return ret_val;
+}
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
 /* Name        : Rte_Write_SetAngle_AngleValue_SignalGroup                    */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
 /* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Descriptor  : Send Signal group to PDU buffer                              */
 /* Note        :                                                              */
 /******************************************************************************/
 
@@ -76,14 +107,14 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonVal
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_AngleValue_SignalGroup( VAR(AUTOSAR_Angle, AUTOMATIC) data ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     VAR(Std_ReturnType, AUTOMATIC) ret;
-    VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
+    VAR(AUTOSAR_Angle, AUTOMATIC) tmp_data = data;
 
-    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_Fold, &data.fold_angle );
-    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_LeftYaw, &data.left_yaw_angle );
-    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_LeftPitch, &data.left_pitch_angle );
-    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_RightYaw, &data.right_yaw_angle );
-    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_RightPitch, &data.right_pitch_angle );
-    ret = Com_SendSignalGroup(ComConf_ComSignalGroup_ComISignal_HS_CAN1_SetAngle)
+    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_Fold, &tmp_data.fold_angle );
+    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_LeftYaw, &tmp_data.left_yaw_angle );
+    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_LeftPitch, &tmp_data.left_pitch_angle );
+    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_RightYaw, &tmp_data.right_yaw_angle );
+    Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_RightPitch, &tmp_data.right_pitch_angle );
+    ret = Com_SendSignalGroup(ComConf_ComSignalGroup_ComISignal_HS_CAN1_SetAngle);
 
     switch( ret ) {
     case COM_SERVICE_NOT_AVAILABLE:
@@ -98,6 +129,10 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_AngleValue_Sig
     }
 
     return ret_val;
+}
+
+FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_Parameter_AngleParamValue( P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) ParamPtr ) {
+    // stimulate function to read data from SWC calibration
 }
 
 #include "Rte_MemMap.h"

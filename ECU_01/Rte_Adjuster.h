@@ -12,10 +12,10 @@
 #define RTE_SWCADJUSTER_H
 
 #include "Rte_Type.h"
+#include "DataType.h"
 
-FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetUserOption_10ms(void);
-FUNC(Std_ReturnType, AUTOMATIC) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button );
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IoHwAb_Dio_ReadChannel( VAR(uint8, AUTOMATIC) id, P2VAR(uint8, AUTOMATIC, RTE_APPL_DATA) value );
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button );
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup( VAR(uint8, AUTOMATIC) id, P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) value );
 
 #endif
 

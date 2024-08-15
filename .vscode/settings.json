@@ -2,6 +2,7 @@
     "files.associations": {
         "rte_swcadjuster.h": "c",
         "rte_mirrorcontrol.h": "c",
-        "rte_adjuster.h": "c"
+        "rte_adjuster.h": "c",
+        "datatype.h": "c"
     }
 }

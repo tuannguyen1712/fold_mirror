@@ -10,14 +10,11 @@
 
 #include "Rte_Adjuster.h"
 #include "Rte_MirrorControl.h"
+#include "DataType.h"
 
-extern VAR(buttonValues, AUTOMATIC) yaw_upper_limit;
-extern VAR(buttonValues, AUTOMATIC) yaw_lower_limit;
-extern VAR(buttonValues, AUTOMATIC) yaw_change_value;
+VAR(Angle_Param, AUTOMATIC) ParamValue;
 
-extern VAR(buttonValues, AUTOMATIC) pitch_upper_limit;
-extern VAR(buttonValues, AUTOMATIC) pitch_lower_limit;
-extern VAR(buttonValues, AUTOMATIC) pitch_change_value;
+VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
 
 /*  Use button to determine user control. BTNx = 1 (press), = 0 (release)
     - Use BTN1 and BTN2  to choose what mirror want to control: 
@@ -38,21 +35,15 @@ extern VAR(buttonValues, AUTOMATIC) pitch_change_value;
 
 FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void) {
     // read data from NV
+    Rte_Call_NV_NvM_ReadBlock(NV_ANGLE_BLOCK_ID, &AngleValue);
 
     // read data from ParamSWC
+    Rte_Read_Parameter_AngleParamValue(&ParamValue);
 }
 
 FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
-    VAR(buttonValues, AUTOMATIC) button;
-    
     // read pin state
-    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId1, &button[0]);
-    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId2, &button[1]);
-    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId3, &button[2]);
-    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId4, &button[3]);
-    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId5, &button[4]);
-    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId6, &button[5]);
-    Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId7, &button[6]);
+    Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup(Dio_Button_GroupID, button);
 
     Rte_Write_PP_Position_ButtonArray(button);
 }
@@ -60,7 +51,6 @@ FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
 FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void) 
 {
     VAR(buttonValues, AUTOMATIC) button;
-    VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
     VAR(uint8, AUTOMATIC) is_change = 0;
 
     Rte_Read_RP_Setting_ButtonArray(&button);
@@ -79,9 +69,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
     { 
         if (button[4]) 
         {                                       // Increase yaw angle
-            if (AngleValue.left_yaw_angle < yaw_upper_limit) 
+            if (AngleValue.left_yaw_angle < ParamValue.yaw_upper_limit) 
             {
-                AngleValue.left_yaw_angle += yaw_change_value;
+                AngleValue.left_yaw_angle += ParamValue.yaw_change_value;
             }
             else {
                 // do nothing
@@ -90,9 +80,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
         }
         if (button[5])
         {                                       // Decrease yaw angle
-            if (AngleValue.left_yaw_angle > yaw_lower_limit) 
+            if (AngleValue.left_yaw_angle > ParamValue.yaw_lower_limit) 
             {
-                AngleValue.left_yaw_angle -= yaw_change_value;
+                AngleValue.left_yaw_angle -= ParamValue.yaw_change_value;
             }
             else {
                 // do nothing
@@ -101,9 +91,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
         }
         if (button[6]) 
         {                                       // Increase pitch angle
-            if (AngleValue.left_pitch_angle < pitch_upper_limit) 
+            if (AngleValue.left_pitch_angle < ParamValue.pitch_upper_limit) 
             {
-                AngleValue.left_pitch_angle += pitch_change_value;
+                AngleValue.left_pitch_angle += ParamValue.pitch_change_value;
             }
             else {
                 // do nothing
@@ -112,9 +102,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
         }
         if (button[5]) 
         {                                       // Decrease pitch angle
-            if (AngleValue.left_pitch_angle > pitch_lower_limit) 
+            if (AngleValue.left_pitch_angle > ParamValue.pitch_lower_limit) 
             {
-                AngleValue.left_pitch_angle -= pitch_change_value;
+                AngleValue.left_pitch_angle -= ParamValue.pitch_change_value;
             }
             else {
                 // do nothing
@@ -126,9 +116,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
     else if (!button[0] && button[1])           // Right mirror
     { 
         if (button[4]) {                        // Increase yaw angle
-            if (AngleValue.right_yaw_angle < yaw_upper_limit) 
+            if (AngleValue.right_yaw_angle < ParamValue.yaw_upper_limit) 
             {
-                AngleValue.right_yaw_angle += yaw_change_value;
+                AngleValue.right_yaw_angle += ParamValue.yaw_change_value;
             }
             else {
                 // do nothing
@@ -136,9 +126,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
             is_change = 1;
         }
         if (button[5]) {                        // Decrease yaw angle
-            if (AngleValue.right_yaw_angle > yaw_lower_limit) 
+            if (AngleValue.right_yaw_angle > ParamValue.yaw_lower_limit) 
             {
-                AngleValue.right_yaw_angle -= yaw_change_value;
+                AngleValue.right_yaw_angle -= ParamValue.yaw_change_value;
             }
             else {
                 // do nothing
@@ -146,9 +136,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
             is_change = 1;
         }
         if (button[6]) {                        // Increase pitch angle
-            if (AngleValue.right_pitch_angle < pitch_upper_limit) 
+            if (AngleValue.right_pitch_angle < ParamValue.pitch_upper_limit) 
             {
-                AngleValue.right_pitch_angle += pitch_change_value;
+                AngleValue.right_pitch_angle += ParamValue.pitch_change_value;
             }
             else {
                 // do nothing
@@ -156,9 +146,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
             is_change = 1;
         }
         if (button[5]) {                        // Decrease pitch angle
-            if (AngleValue.right_pitch_angle > pitch_lower_limit) 
+            if (AngleValue.right_pitch_angle > ParamValue.pitch_lower_limit) 
             {
-                AngleValue.right_pitch_angle -= pitch_change_value;
+                AngleValue.right_pitch_angle -= ParamValue.pitch_change_value;
             }
             else {
                 // do nothing
@@ -169,7 +159,7 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
 
     // Update new data to NVM
     if (is_change) {
-
+        Rte_Call_NV_NvM_WriteBlock(NV_ANGLE_BLOCK_ID, &AngleValue);
     }
 
     // Send Signal to ComM

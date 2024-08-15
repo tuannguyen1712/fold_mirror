@@ -20,6 +20,7 @@
 
 VAR(buttonValues, AUTOMATIC) buttonArrayVal;
 
+// write data to PP_Position port
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button ) {
     VAR (Std_ReturnType, AUTOMIC) ret_val = RTE_E_OK
 
@@ -31,13 +32,14 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_PP_Position_ButtonArray
     return ret_val;
 }
 
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannel( VAR(uint8, AUTOMATIC) id, P2VAR(uint8, AUTOMATIC, RTE_APPL_DATA) value ) {
+// call service IoHwAb_Dio_ReadChannelGroup from IO port
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup( VAR(uint8, AUTOMATIC) id, P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) value ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     if (value == NULL) {
         ret_val = RTE_E_INVALID;
         return ret_val;
     }
-    retval = IoHwAb_Dio_ReadChannel( id, value );
+    retval = IoHwAb_Dio_ReadChannelGroup( id, value );
     return ret_val;
 }
 
