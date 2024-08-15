@@ -60,6 +60,8 @@ TASK (TASK_CONTROL) {
         if( (Event & OSEvent_10ms_GetOption) > 0U ) {
             (VAR(void, AUTOMATIC))ClearEvent( OSEvent_10ms_GetOption );
             Rte_GetUserOption_10ms();
+             // scheduled for runnale UpdatePossition
+            SetEvent(TASK_CONTROL, OSEvent_UpdatePosition); 
         } 
         if ( (Event & OSEvent_UpdatePosition) > 0U ) {
             (VAR(void, AUTOMATIC))ClearEvent( OSEvent_UpdatePosition );

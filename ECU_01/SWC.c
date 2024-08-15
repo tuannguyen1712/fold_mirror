@@ -19,11 +19,7 @@ extern VAR(buttonValues, AUTOMATIC) pitch_upper_limit;
 extern VAR(buttonValues, AUTOMATIC) pitch_lower_limit;
 extern VAR(buttonValues, AUTOMATIC) pitch_change_value;
 
-extern VAR(uint8, AUTOMATIC) fold;                     // fold angle value
-extern VAR(uint8, AUTOMATIC) l_yaw;                    // left mirror yaw angle value
-extern VAR(uint8, AUTOMATIC) l_pitch;                  // left mirror pitch angle value
-extern VAR(uint8, AUTOMATIC) r_yaw;                    // right mirror yaw angle value
-extern VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle value
+extern VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
 
 /*  Use button to determine user control. BTNx = 1 (press), = 0 (release)
     - Use BTN1 and BTN2  to choose what mirror want to control: 
@@ -61,8 +57,6 @@ FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
     Rte_Call_RP_IoHwAb_Dio_ReadChannel(DioChannelId7, &button[6]);
 
     Rte_Write_PP_Position_ButtonArray(button);
-    // scheduled for runnale UpdatePossition
-    SetEvent(TASK_CONTROL, OSEvent_UpdatePosition);
 }
 
 FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void) 
@@ -180,11 +174,7 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
     }
 
     // Send Signal to ComM
-    Rte_Write_SetAngle_Fold_Signal( fold );
-    Rte_Write_SetAngle_LeftYaw_Signal( l_yaw );
-    Rte_Write_SetAngle_LeftPitch_Signal( l_pitch );
-    Rte_Write_SetAngle_RightYaw_Signal( r_yaw );
-    Rte_Write_SetAngle_RightPitch_Signal( r_pitch );
+    Rte_Write_SetAngle_AngleValue_SignalGroup(AngleValue);
 }
 
 /* End of SWC.c */

@@ -14,15 +14,9 @@
 #include "Rte_Type.h"
 #include "Rte_SwcAdjuster.h"
 
-FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void);
 FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void);
 FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) button );
-
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_Fold_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data );
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_LeftYaw_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data );
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_LeftPitch_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data );
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_RightYaw_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data );
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_RightPitch_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data );
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_AngleValue_SignalGroup( VAR(AUTOSAR_Angle, AUTOMATIC) data );
 
 #include "SwcMirrorControl_MemMap.h"
 

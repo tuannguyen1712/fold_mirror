@@ -34,10 +34,17 @@ VAR(uint8, AUTOMATIC) l_pitch;                  // left mirror pitch angle value
 VAR(uint8, AUTOMATIC) r_yaw;                    // right mirror yaw angle value
 VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle value
 
-FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void) 
-{
-    
-}
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Read_RP_Setting_ButtonArray                              */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Note        :                                                              */
+/******************************************************************************/
+
 
 FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) button ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
@@ -53,167 +60,31 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonVal
     return ret_val;
 }
 
-
-// send Signal
-
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
-/* Name        : Rte_Write_SetAngle_Fold_Signal                               */
+/* Name        : Rte_Write_SetAngle_AngleValue_SignalGroup                    */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
 /* Author      : QINeS Ecuc Generator(Java)                                   */
 /* Note        :                                                              */
 /******************************************************************************/
+
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_Fold_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data ) {
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_AngleValue_SignalGroup( VAR(AUTOSAR_Angle, AUTOMATIC) data ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     VAR(Std_ReturnType, AUTOMATIC) ret;
     VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
 
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_Fold_Signal, &tmp_data );
-    switch( ret ) {
-    case COM_SERVICE_NOT_AVAILABLE:
-        ret_val = RTE_E_COM_STOPPED;
-        break;
-    case COM_BUSY:
-        ret_val = RTE_E_COM_BUSY;
-        break;
-    default:
-        /* nothing */
-        break;
-    }
+    ret = Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_Fold, &data.fold_angle );
+    ret = Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_LeftYaw, &data.left_yaw_angle );
+    ret = Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_LeftPitch, &data.left_pitch_angle );
+    ret = Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_RightYaw, &data.right_yaw_angle );
+    ret = Com_SendSignal( ComConf_ComGroupSignal_ComISignal_HS_CAN1_SetAngle_RightPitch, &data.right_pitch_angle );
+    ret = Com_SendSignalGroup(ComConf_ComSignalGroup_ComISignal_HS_CAN1_SetAngle_RightPitch)
 
-    return ret_val;
-}
-#define RTE_STOP_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-
-/******************************************************************************/
-/* ModuleID    :                                                              */
-/* ServiceID   :                                                              */
-/* Name        : Rte_Write_SetAngle_LeftYaw_Signal                            */
-/* Param       :                                                              */
-/* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Note        :                                                              */
-/******************************************************************************/
-#define RTE_START_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_LeftYaw_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data ) {
-    VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
-    VAR(Std_ReturnType, AUTOMATIC) ret;
-    VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
-
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_LeftYaw_Signal, &tmp_data );
-    switch( ret ) {
-    case COM_SERVICE_NOT_AVAILABLE:
-        ret_val = RTE_E_COM_STOPPED;
-        break;
-    case COM_BUSY:
-        ret_val = RTE_E_COM_BUSY;
-        break;
-    default:
-        /* nothing */
-        break;
-    }
-
-    return ret_val;
-}
-#define RTE_STOP_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-
-/******************************************************************************/
-/* ModuleID    :                                                              */
-/* ServiceID   :                                                              */
-/* Name        : Rte_Write_SetAngle_LeftPitch_Signal                          */
-/* Param       :                                                              */
-/* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Note        :                                                              */
-/******************************************************************************/
-#define RTE_START_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_LeftPitch_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data ) {
-    VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
-    VAR(Std_ReturnType, AUTOMATIC) ret;
-    VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
-
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_LeftPitch_Signal, &tmp_data );
-    switch( ret ) {
-    case COM_SERVICE_NOT_AVAILABLE:
-        ret_val = RTE_E_COM_STOPPED;
-        break;
-    case COM_BUSY:
-        ret_val = RTE_E_COM_BUSY;
-        break;
-    default:
-        /* nothing */
-        break;
-    }
-
-    return ret_val;
-}
-#define RTE_STOP_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-
-/******************************************************************************/
-/* ModuleID    :                                                              */
-/* ServiceID   :                                                              */
-/* Name        : Rte_Write_SetAngle_RightYaw_Signal                           */
-/* Param       :                                                              */
-/* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Note        :                                                              */
-/******************************************************************************/
-#define RTE_START_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_RightYaw_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data ) {
-    VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
-    VAR(Std_ReturnType, AUTOMATIC) ret;
-    VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
-
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_RightYaw_Signal, &tmp_data );
-    switch( ret ) {
-    case COM_SERVICE_NOT_AVAILABLE:
-        ret_val = RTE_E_COM_STOPPED;
-        break;
-    case COM_BUSY:
-        ret_val = RTE_E_COM_BUSY;
-        break;
-    default:
-        /* nothing */
-        break;
-    }
-
-    return ret_val;
-}
-#define RTE_STOP_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-
-/******************************************************************************/
-/* ModuleID    :                                                              */
-/* ServiceID   :                                                              */
-/* Name        : Rte_Write_SetAngle_RightPitch_Signal                         */
-/* Param       :                                                              */
-/* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Note        :                                                              */
-/******************************************************************************/
-#define RTE_START_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_RightPitch_Signal( VAR(AUTOSAR_uint8, AUTOMATIC) data ) {
-    VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
-    VAR(Std_ReturnType, AUTOMATIC) ret;
-    VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
-
-    ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_SetAngle_RightPitch_Signal, &tmp_data );
     switch( ret ) {
     case COM_SERVICE_NOT_AVAILABLE:
         ret_val = RTE_E_COM_STOPPED;
