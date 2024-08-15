@@ -19,8 +19,6 @@ extern VAR(buttonValues, AUTOMATIC) pitch_upper_limit;
 extern VAR(buttonValues, AUTOMATIC) pitch_lower_limit;
 extern VAR(buttonValues, AUTOMATIC) pitch_change_value;
 
-extern VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
-
 /*  Use button to determine user control. BTNx = 1 (press), = 0 (release)
     - Use BTN1 and BTN2  to choose what mirror want to control: 
         + BTN1 = 1, BTN2 = 0: Left mirror
@@ -62,16 +60,17 @@ FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
 FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void) 
 {
     VAR(buttonValues, AUTOMATIC) button;
+    VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
     VAR(uint8, AUTOMATIC) is_change = 0;
 
     Rte_Read_RP_Setting_ButtonArray(&button);
 
     if (button[2] == 1) 
     {                                           // press fold button, chage fold state
-        if (fold == 90)         
-            fold = 0;
-        else if (fold == 0) {
-            fold = 90;
+        if (AngleValue.fold_angle == 90)         
+            AngleValue.fold_angle = 0;
+        else if (AngleValue.fold_angle == 0) {
+            AngleValue.fold_angle = 90;
         }
         is_change = 1;
     }
@@ -80,9 +79,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
     { 
         if (button[4]) 
         {                                       // Increase yaw angle
-            if (l_yaw < yaw_upper_limit) 
+            if (AngleValue.left_yaw_angle < yaw_upper_limit) 
             {
-                l_yaw += yaw_change_value;
+                AngleValue.left_yaw_angle += yaw_change_value;
             }
             else {
                 // do nothing
@@ -91,9 +90,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
         }
         if (button[5])
         {                                       // Decrease yaw angle
-            if (l_yaw > yaw_lower_limit) 
+            if (AngleValue.left_yaw_angle > yaw_lower_limit) 
             {
-                l_yaw -= yaw_change_value;
+                AngleValue.left_yaw_angle -= yaw_change_value;
             }
             else {
                 // do nothing
@@ -102,9 +101,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
         }
         if (button[6]) 
         {                                       // Increase pitch angle
-            if (l_pitch < pitch_upper_limit) 
+            if (AngleValue.left_pitch_angle < pitch_upper_limit) 
             {
-                l_pitch += pitch_change_value;
+                AngleValue.left_pitch_angle += pitch_change_value;
             }
             else {
                 // do nothing
@@ -113,9 +112,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
         }
         if (button[5]) 
         {                                       // Decrease pitch angle
-            if (l_pitch > pitch_lower_limit) 
+            if (AngleValue.left_pitch_angle > pitch_lower_limit) 
             {
-                l_pitch -= pitch_change_value;
+                AngleValue.left_pitch_angle -= pitch_change_value;
             }
             else {
                 // do nothing
@@ -127,9 +126,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
     else if (!button[0] && button[1])           // Right mirror
     { 
         if (button[4]) {                        // Increase yaw angle
-            if (l_yaw < yaw_upper_limit) 
+            if (AngleValue.right_yaw_angle < yaw_upper_limit) 
             {
-                l_yaw += yaw_change_value;
+                AngleValue.right_yaw_angle += yaw_change_value;
             }
             else {
                 // do nothing
@@ -137,9 +136,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
             is_change = 1;
         }
         if (button[5]) {                        // Decrease yaw angle
-            if (l_yaw > yaw_lower_limit) 
+            if (AngleValue.right_yaw_angle > yaw_lower_limit) 
             {
-                l_yaw -= yaw_change_value;
+                AngleValue.right_yaw_angle -= yaw_change_value;
             }
             else {
                 // do nothing
@@ -147,9 +146,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
             is_change = 1;
         }
         if (button[6]) {                        // Increase pitch angle
-            if (l_pitch < pitch_upper_limit) 
+            if (AngleValue.right_pitch_angle < pitch_upper_limit) 
             {
-                l_pitch += pitch_change_value;
+                AngleValue.right_pitch_angle += pitch_change_value;
             }
             else {
                 // do nothing
@@ -157,9 +156,9 @@ FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void)
             is_change = 1;
         }
         if (button[5]) {                        // Decrease pitch angle
-            if (l_pitch > pitch_lower_limit) 
+            if (AngleValue.right_pitch_angle > pitch_lower_limit) 
             {
-                l_pitch -= pitch_change_value;
+                AngleValue.right_pitch_angle -= pitch_change_value;
             }
             else {
                 // do nothing
