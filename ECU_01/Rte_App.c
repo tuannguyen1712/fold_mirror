@@ -53,18 +53,18 @@ TASK (TASK_CONTROL) {
 
     while( 1 )
     {
-        (VAR(void, AUTOMATIC))WaitEvent( OSEvent_10ms_GetOption | OSEvent_UpdatePosition );
+        (VAR(void, AUTOMATIC))WaitEvent( Rte_TE_10ms_GetOption | Rte_DRE_UpdatePosition );
         Event = 0U;
         (VAR(void, AUTOMATIC))GetEvent( TASK_CONTROL, &Event );
 
-        if( (Event & OSEvent_10ms_GetOption) > 0U ) {
-            (VAR(void, AUTOMATIC))ClearEvent( OSEvent_10ms_GetOption );
+        if( (Event & Rte_TE_10ms_GetOption) > 0U ) {
+            (VAR(void, AUTOMATIC))ClearEvent( Rte_TE_10ms_GetOption );
             Rte_GetUserOption_10ms();
              // scheduled for runnale UpdatePossition
-            SetEvent(TASK_CONTROL, OSEvent_UpdatePosition); 
+            SetEvent(TASK_CONTROL, Rte_TE_10ms_GetOption); 
         } 
-        if ( (Event & OSEvent_UpdatePosition) > 0U ) {
-            (VAR(void, AUTOMATIC))ClearEvent( OSEvent_UpdatePosition );
+        if ( (Event & Rte_DRE_UpdatePosition) > 0U ) {
+            (VAR(void, AUTOMATIC))ClearEvent( Rte_DRE_UpdatePosition );
             Rte_UpdatePossition();
         }
     }

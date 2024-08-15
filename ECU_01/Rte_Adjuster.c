@@ -31,7 +31,7 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_PP_Position_ButtonArray
     return ret_val;
 }
 
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IoHwAb_Dio_ReadChannel( VAR(uint8, AUTOMATIC) id, P2VAR(uint8, AUTOMATIC, RTE_APPL_DATA) value ) {
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannel( VAR(uint8, AUTOMATIC) id, P2VAR(uint8, AUTOMATIC, RTE_APPL_DATA) value ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     if (value == NULL) {
         ret_val = RTE_E_INVALID;
