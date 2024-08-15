@@ -62,7 +62,7 @@ VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle valu
 
     FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_NV_PreviousNvValue(NvM_BlockIdType BlockId, uint8* DataBuffer)
     {
-        // Define the function to read a block from NVM
+        
             NvM_ReturnType result = RTE_E_OK;
 
             // Call the NvM_ReadBlock function with the specified BlockId, buffer, and length
@@ -75,13 +75,13 @@ VAR(uint8, AUTOMATIC) r_pitch;                  // right mirror pitch angle valu
 
     FUNC(NvM_ReturnType, RTE_CODE_EcucPartion_0) Rte_Write_NV_LastNvValue(NvM_BlockIdType BlockId, const uint8* DataBuffer)
     {
-        // Call the NvM_WriteBlock function with the specified BlockId, buffer, and length
+        // Call the NvM_WriteBlock function with the specified BlockId, buffer
         NvM_ReturnType result = NvM_WriteBlock(BlockId, DataBuffer);
 
         // Handle the return value to check if the operation was successful
         if (result != NVM_REQ_OK) {
         // Error handling can be implemented here: log error, retry the operation, .v.v
-        // Example: Log the error, retry the operation, etc.
+        
         }
 
         return result;
