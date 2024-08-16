@@ -18,8 +18,8 @@
 FUNC(void, RTE_CODE) UpdatePossition(void);
 FUNC(Std_ReturnType, RTE_CODE) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) button );
 FUNC(Std_ReturnType, RTE_CODE) Rte_Write_SetAngle_AngleValue_SignalGroup( VAR(AUTOSAR_Angle, AUTOMATIC) data );
-FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer);
-FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_WriteBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2CONST(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer);
+FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer);
+FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_WriteBlock( P2CONST(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer);
 FUNC(NvM_ReturnType, RTE_CODE) Rte_Read_Parameter_AngleParamValue( P2VAR(Angle_Param, AUTOMATIC, RTE_APPL_DATA) ParamPtr );
 
 #include "SwcMirrorControl_MemMap.h"

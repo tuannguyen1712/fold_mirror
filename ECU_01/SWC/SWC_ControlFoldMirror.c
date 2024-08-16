@@ -48,7 +48,7 @@ VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
 
 FUNC(void, RTE_CODE) GetParram(void) {
     // read data from NV
-    Rte_Call_NV_NvM_ReadBlock(NV_ANGLE_BLOCK_ID, &AngleValue);
+    Rte_Call_NV_NvM_ReadBlock(&AngleValue);
 
     // read data from ParamSWC
     Rte_Read_Parameter_AngleParamValue(&ParamValue);
@@ -113,7 +113,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
 
     if (button[0] && !button[1])                // Left mirror
     { 
-        if (button[4]) 
+        if (button[3]) 
         {                                       // Increase yaw angle
             if (AngleValue.left_yaw_angle < ParamValue.yaw_upper_limit) 
             {
@@ -124,7 +124,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
             }
             is_change = 1;
         }
-        if (button[5])
+        if (button[4])
         {                                       // Decrease yaw angle
             if (AngleValue.left_yaw_angle > ParamValue.yaw_lower_limit) 
             {
@@ -135,7 +135,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
             }
             is_change = 1;
         }
-        if (button[6]) 
+        if (button[5]) 
         {                                       // Increase pitch angle
             if (AngleValue.left_pitch_angle < ParamValue.pitch_upper_limit) 
             {
@@ -146,7 +146,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
             }
             is_change = 1;
         }
-        if (button[5]) 
+        if (button[6]) 
         {                                       // Decrease pitch angle
             if (AngleValue.left_pitch_angle > ParamValue.pitch_lower_limit) 
             {
@@ -161,7 +161,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
 
     else if (!button[0] && button[1])           // Right mirror
     { 
-        if (button[4]) {                        // Increase yaw angle
+        if (button[3]) {                        // Increase yaw angle
             if (AngleValue.right_yaw_angle < ParamValue.yaw_upper_limit) 
             {
                 AngleValue.right_yaw_angle += ParamValue.yaw_change_value;
@@ -171,7 +171,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
             }
             is_change = 1;
         }
-        if (button[5]) {                        // Decrease yaw angle
+        if (button[4]) {                        // Decrease yaw angle
             if (AngleValue.right_yaw_angle > ParamValue.yaw_lower_limit) 
             {
                 AngleValue.right_yaw_angle -= ParamValue.yaw_change_value;
@@ -181,7 +181,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
             }
             is_change = 1;
         }
-        if (button[6]) {                        // Increase pitch angle
+        if (button[5]) {                        // Increase pitch angle
             if (AngleValue.right_pitch_angle < ParamValue.pitch_upper_limit) 
             {
                 AngleValue.right_pitch_angle += ParamValue.pitch_change_value;
@@ -191,7 +191,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
             }
             is_change = 1;
         }
-        if (button[5]) {                        // Decrease pitch angle
+        if (button[6]) {                        // Decrease pitch angle
             if (AngleValue.right_pitch_angle > ParamValue.pitch_lower_limit) 
             {
                 AngleValue.right_pitch_angle -= ParamValue.pitch_change_value;
@@ -205,7 +205,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
 
     // Update new data to NVM
     if (is_change) {
-        Rte_Call_NV_NvM_WriteBlock(NV_ANGLE_BLOCK_ID, &AngleValue);
+        Rte_Call_NV_NvM_WriteBlock(&AngleValue);
     }
 
     // Send Signal to ComM

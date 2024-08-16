@@ -56,12 +56,12 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonVal
 /* Note        :                                                              */
 /******************************************************************************/
 
-FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
+FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
 
     // Call the NvM_ReadBlock function with the specified BlockId, buffer, and length
-    ret_val = NvM_ReadBlock(BlockId, DataBuffer);
+    ret_val = NvM_ReadBlock(NV_ANGLE_BLOCK_ID, DataBuffer);
 
     // Handle the return value to check if the operation was successful
     return ret_val;
@@ -79,11 +79,11 @@ FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( VAR(NvM_BlockIdType, A
 /* Note        :                                                              */
 /******************************************************************************/
 
-FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_WriteBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2CONST(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
+FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_WriteBlock( P2CONST(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     // Call the NvM_WriteBlock function with the specified BlockId, buffer
-    ret_val = NvM_WriteBlock(BlockId, DataBuffer);
+    ret_val = NvM_WriteBlock(NV_ANGLE_BLOCK_ID, DataBuffer);
     // Handle the return value to check if the operation was successful
     return ret_val;
 }
