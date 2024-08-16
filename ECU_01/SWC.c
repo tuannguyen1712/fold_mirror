@@ -33,6 +33,19 @@ VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
         + BTN7 = 1: decrease Pitch Angle
 */
 
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : GetParram                                                    */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Read calibration data from SWC Calibration and mirror angle  */
+/*               data from NV                                                 */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Descriptor  : Read data from NV block                                      */
+/* Note        :                                                              */
+/******************************************************************************/
+
 FUNC(void, RTE_CODE) GetParram(void) {
     // read data from NV
     Rte_Call_NV_NvM_ReadBlock(NV_ANGLE_BLOCK_ID, &AngleValue);
@@ -40,6 +53,18 @@ FUNC(void, RTE_CODE) GetParram(void) {
     // read data from ParamSWC
     Rte_Read_Parameter_AngleParamValue(&ParamValue);
 }
+
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : GetUserOption_10ms                                           */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Read button state value and send to MirrorControl SWC        */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Descriptor  : Read data from NV block                                      */
+/* Note        :                                                              */
+/******************************************************************************/
 
 FUNC(void, RTE_CODE) GetUserOption_10ms(void) {
     // read pin state
@@ -56,6 +81,18 @@ FUNC(void, RTE_CODE) GetUserOption_10ms(void) {
 
     Rte_Write_PP_Position_ButtonArray(button);
 }
+
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : GetUserOption_10ms                                           */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Calculate angle and send value to ECU_02 and ECU_03          */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Descriptor  : Read data from NV block                                      */
+/* Note        :                                                              */
+/******************************************************************************/
 
 FUNC(void, RTE_CODE) UpdatePossition(void) 
 {

@@ -20,7 +20,16 @@
 
 VAR(buttonValues, AUTOMATIC) buttonArrayVal;
 
-// write data to PP_Position port
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Write_SetAngle_AngleValue_SignalGroup                    */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : write data to PP_Position port                               */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Note        :                                                              */
+/******************************************************************************/
 FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button ) {
     VAR (Std_ReturnType, AUTOMIC) ret_val = RTE_E_OK
 
@@ -32,7 +41,17 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_Position_ButtonArray( VAR(buttonValu
     return ret_val;
 }
 
-// call service IoHwAb_Dio_ReadChannelGroup from IO port, return value 8 bit (each bit is 1 pin state)
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Write_SetAngle_AngleValue_SignalGroup                    */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : call service IoHwAb_Dio_ReadChannelGroup from IO port,       */
+/*               return value 8 bit (each bit is 1 pin state)                 */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Note        :                                                              */
+/******************************************************************************/
 FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup( VAR(uint8, AUTOMATIC) id, P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) value ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     if (value == NULL) {

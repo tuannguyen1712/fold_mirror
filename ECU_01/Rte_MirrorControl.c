@@ -25,9 +25,8 @@ extern VAR(buttonValues, AUTOMATIC) buttonArrayVal;
 /* Name        : Rte_Read_RP_Setting_ButtonArray                              */
 /* Param       :                                                              */
 /* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Contents    : Receive status of buttons from Setting Port                  */
 /* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Descriptor  : Receive status of buttons from Setting Port                  */
 /* Note        :                                                              */
 /******************************************************************************/
 
@@ -52,9 +51,8 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonVal
 /* Name        : Rte_Call_NV_PreviousNvValue                                  */
 /* Param       :                                                              */
 /* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Contents    : Read data from NV block                                      */
 /* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Descriptor  : Read data from NV block                                      */
 /* Note        :                                                              */
 /******************************************************************************/
 
@@ -76,9 +74,8 @@ FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( VAR(NvM_BlockIdType, A
 /* Name        : Rte_Call_NV_NvM_WriteBlock                                   */
 /* Param       :                                                              */
 /* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Contents    : Write data to NV block                                       */
 /* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Descriptor  : Write data to NV block                                       */
 /* Note        :                                                              */
 /******************************************************************************/
 
@@ -96,9 +93,8 @@ FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_WriteBlock( VAR(NvM_BlockIdType, 
 /* Name        : Rte_Write_SetAngle_AngleValue_SignalGroup                    */
 /* Param       :                                                              */
 /* Return      :                                                              */
-/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Contents    : Send Signal group to PDU buffer                              */
 /* Author      : QINeS Ecuc Generator(Java)                                   */
-/* Descriptor  : Send Signal group to PDU buffer                              */
 /* Note        :                                                              */
 /******************************************************************************/
 

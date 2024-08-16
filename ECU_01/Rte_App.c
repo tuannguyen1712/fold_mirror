@@ -21,6 +21,8 @@ extern FUNC(void, RTE_CODE) Rte_GetParram( VAR(void, AUTOMATIC) );
 extern FUNC(void, RTE_CODE) Rte_GetUserOption_10ms( VAR(void, AUTOMATIC) );
 extern FUNC(void, RTE_CODE) Rte_UpdatePossition( VAR(void, AUTOMATIC) );
 
+// TASK_INIT have higher priority, TASK_INIT and TASK_CONTROL auto run
+
 TASK (TASK_INIT) {
     Rte_GetParram();
     // ActivateTask(TASK_CONTROL);
