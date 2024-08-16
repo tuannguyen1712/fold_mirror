@@ -14,8 +14,8 @@
 #include "Rte_Type.h"
 #include "DataType.h"
 
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button );
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup( VAR(uint8, AUTOMATIC) id, P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) value );
+FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button );
+FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup( VAR(uint8, AUTOMATIC) id, P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) value );
 
 #endif
 

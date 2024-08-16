@@ -33,7 +33,7 @@ VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
         + BTN7 = 1: decrease Pitch Angle
 */
 
-FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void) {
+FUNC(void, RTE_CODE) GetParram(void) {
     // read data from NV
     Rte_Call_NV_NvM_ReadBlock(NV_ANGLE_BLOCK_ID, &AngleValue);
 
@@ -41,14 +41,23 @@ FUNC(void, RTE_CODE_EcucPartition_0) GetParram(void) {
     Rte_Read_Parameter_AngleParamValue(&ParamValue);
 }
 
-FUNC(void, RTE_CODE_EcucPartition_0) GetUserOption_10ms(void) {
+FUNC(void, RTE_CODE) GetUserOption_10ms(void) {
     // read pin state
-    Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup(Dio_Button_GroupID, button);
+    VAR(uint8, AUTOMATIC) button_state;
+
+    Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup(Dio_Button_GroupID, button_state);
+    button[0] = (button_state & 0x01);                  // get bit 0
+    button[1] = (button_state & 0x02) >> 0x01;
+    button[2] = (button_state & 0x04) >> 0x02;
+    button[3] = (button_state & 0x08) >> 0x03;
+    button[4] = (button_state & 0x10) >> 0x04;
+    button[5] = (button_state & 0x20) >> 0x05;
+    button[6] = (button_state & 0x40) >> 0x06;          // get bit 6
 
     Rte_Write_PP_Position_ButtonArray(button);
 }
 
-FUNC(void, RTE_CODE_EcucPartition_0) UpdatePossition(void) 
+FUNC(void, RTE_CODE) UpdatePossition(void) 
 {
     VAR(buttonValues, AUTOMATIC) button;
     VAR(uint8, AUTOMATIC) is_change = 0;

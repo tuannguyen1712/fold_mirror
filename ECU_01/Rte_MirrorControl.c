@@ -58,7 +58,7 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonVal
 /* Note        :                                                              */
 /******************************************************************************/
 
-FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_NV_NvM_ReadBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
+FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
 
@@ -82,7 +82,7 @@ FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_NV_NvM_ReadBlock( VAR(Nv
 /* Note        :                                                              */
 /******************************************************************************/
 
-FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_NV_NvM_WriteBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2CONST(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
+FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_WriteBlock( VAR(NvM_BlockIdType, AUTOMATIC) BlockId, P2CONST(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     // Call the NvM_WriteBlock function with the specified BlockId, buffer
@@ -104,7 +104,7 @@ FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_NV_NvM_WriteBlock( VAR(N
 
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_AngleValue_SignalGroup( VAR(AUTOSAR_Angle, AUTOMATIC) data ) {
+FUNC(Std_ReturnType, RTE_CODE) Rte_Write_SetAngle_AngleValue_SignalGroup( VAR(AUTOSAR_Angle, AUTOMATIC) data ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     VAR(Std_ReturnType, AUTOMATIC) ret;
     VAR(AUTOSAR_Angle, AUTOMATIC) tmp_data = data;
@@ -131,17 +131,17 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_SetAngle_AngleValue_Sig
     return ret_val;
 }
 
-FUNC(NvM_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_Parameter_AngleParamValue( P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) ParamPtr ) {
+FUNC(NvM_ReturnType, RTE_CODE) Rte_Read_Parameter_AngleParamValue( P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) ParamPtr ) {
     // stimulate function to read data from SWC calibration
 }
 
 #include "Rte_MemMap.h"
-FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetParram( VAR(void, AUTOMATIC) ) {
+FUNC(void, RTE_CODE) Rte_GetParram( VAR(void, AUTOMATIC) ) {
     GetParram();
 }
 
 #include "Rte_MemMap.h"
-FUNC(void, RTE_CODE_EcucPartition_0) Rte_UpdatePossition( VAR(void, AUTOMATIC) ) {
+FUNC(void, RTE_CODE) Rte_UpdatePossition( VAR(void, AUTOMATIC) ) {
     UpdatePossition();
 }
 

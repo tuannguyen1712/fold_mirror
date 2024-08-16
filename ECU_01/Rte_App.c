@@ -17,9 +17,9 @@
 #include "Com.h"
 #include "Rte_Internal.h"
 
-extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetParram( VAR(void, AUTOMATIC) );
-extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_GetUserOption_10ms( VAR(void, AUTOMATIC) );
-extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_UpdatePossition( VAR(void, AUTOMATIC) );
+extern FUNC(void, RTE_CODE) Rte_GetParram( VAR(void, AUTOMATIC) );
+extern FUNC(void, RTE_CODE) Rte_GetUserOption_10ms( VAR(void, AUTOMATIC) );
+extern FUNC(void, RTE_CODE) Rte_UpdatePossition( VAR(void, AUTOMATIC) );
 
 TASK (TASK_INIT) {
     Rte_GetParram();
@@ -40,7 +40,7 @@ TASK (TASK_CONTROL) {
             (VAR(void, AUTOMATIC))ClearEvent( Rte_TE_10ms_GetOption );
             Rte_GetUserOption_10ms();
              // scheduled for runnale UpdatePossition
-            SetEvent(TASK_CONTROL, Rte_TE_10ms_GetOption); 
+            SetEvent(TASK_CONTROL, Rte_DRE_UpdatePosition); 
         } 
         if ( (Event & Rte_DRE_UpdatePosition) > 0U ) {
             (VAR(void, AUTOMATIC))ClearEvent( Rte_DRE_UpdatePosition );
