@@ -12,6 +12,11 @@
 #include "Rte_MirrorControl.h"
 #include "DataType.h"
 
+/* Define diagnostic Event diagnostic and status */
+#define MIRROR_LEFT_RIGHT_BUTTON_ERROR_EVENT    0
+#define DEM_EVENT_STATUS_FAILED     0
+#define DEM_EVENT_STATUS_PASSED     1
+
 VAR(Angle_Param, AUTOMATIC) ParamValue;
 
 VAR(AUTOSAR_Angle, AUTOMATIC) AngleValue;
@@ -157,6 +162,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
             }
             is_change = 1;
         }
+        Rte_Call_Dem_SetEventStatus(MIRROR_LEFT_RIGHT_BUTTON_ERROR_EVENT, DEM_EVENT_STATUS_PASSED);
     }
 
     else if (!button[0] && button[1])           // Right mirror
@@ -201,6 +207,10 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
             }
             is_change = 1;
         }
+        Rte_Call_Dem_SetEventStatus(MIRROR_LEFT_RIGHT_BUTTON_ERROR_EVENT, DEM_EVENT_STATUS_PASSED);
+    }
+    else {
+        Rte_Call_Dem_SetEventStatus(MIRROR_LEFT_RIGHT_BUTTON_ERROR_EVENT, DEM_EVENT_STATUS_FAILED);
     }
 
     // Update new data to NVM
