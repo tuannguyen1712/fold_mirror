@@ -54,7 +54,7 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_Position_ButtonArray( VAR(buttonValu
 /* Author      : QINeS Ecuc Generator(Java)                                   */
 /* Note        :                                                              */
 /******************************************************************************/
-FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup( VAR(uint8, AUTOMATIC) id, P2VAR(buttonValues, AUTOMATIC, RTE_APPL_DATA) value ) {
+FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup( VAR(uint8, AUTOMATIC) id, P2VAR(uint8, AUTOMATIC, RTE_APPL_DATA) value ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     if (value == NULL) {
         ret_val = RTE_E_INVALID;

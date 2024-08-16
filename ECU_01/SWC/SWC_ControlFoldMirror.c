@@ -70,7 +70,7 @@ FUNC(void, RTE_CODE) GetUserOption_10ms(void) {
     // read pin state
     VAR(uint8, AUTOMATIC) button_state;
 
-    Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup(Dio_Button_GroupID, button_state);
+    Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup(Dio_Button_GroupID, button_state);       // in Rte_Adjuster.h
     button[0] = (button_state & 0x01);                  // get bit 0
     button[1] = (button_state & 0x02) >> 0x01;
     button[2] = (button_state & 0x04) >> 0x02;
@@ -79,7 +79,7 @@ FUNC(void, RTE_CODE) GetUserOption_10ms(void) {
     button[5] = (button_state & 0x20) >> 0x05;
     button[6] = (button_state & 0x40) >> 0x06;          // get bit 6
 
-    Rte_Write_PP_Position_ButtonArray(button);
+    Rte_Write_PP_Position_ButtonArray(button);                                          // in Rte_Adjuster.h
 }
 
 /******************************************************************************/
@@ -99,7 +99,7 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
     VAR(buttonValues, AUTOMATIC) button;
     VAR(uint8, AUTOMATIC) is_change = 0;
 
-    Rte_Read_RP_Setting_ButtonArray(&button);
+    Rte_Read_RP_Setting_ButtonArray(&button);                                           // in Rte_MirrorControl.h
 
     if (button[2] == 1) 
     {                                           // press fold button, chage fold state
@@ -205,11 +205,11 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
 
     // Update new data to NVM
     if (is_change) {
-        Rte_Call_NV_NvM_WriteBlock(&AngleValue);
+        Rte_Call_NV_NvM_WriteBlock(&AngleValue);                                        // in Rte_MirrorControl.h
     }
 
     // Send Signal to ComM
-    Rte_Write_SetAngle_AngleValue_SignalGroup(AngleValue);
+    Rte_Write_SetAngle_AngleValue_SignalGroup(AngleValue);                              // in Rte_MirrorControl.h
 }
 
 /* End of SWC.c */
