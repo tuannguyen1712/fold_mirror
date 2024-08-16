@@ -36,7 +36,7 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_Position_ButtonArray( VAR(buttonValu
     {
         buttonArrayVal[i] = button[i];
     }
-    
+    SetEvent(TASK_CONTROL, Rte_DRE_UpdatePosition);
     return ret_val;
 }
 
@@ -64,6 +64,7 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup( VAR(u
 #include "Rte_MemMap.h"
 FUNC(void, RTE_CODE) Rte_GetUserOption_10ms(void) {
     GetUserOption_10ms();
+
 }
 
 /* End of Rte_Adjuster.c */
