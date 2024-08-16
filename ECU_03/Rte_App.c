@@ -1,9 +1,17 @@
-#include "Rte_Type.h"
+#include "Rte_MotorRight.h"
 
-#include "Os.h"
-#include "Com.h"
-#include "Rte_Internal.h"
-
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : TASK_MIRROR_RIGHT                                            */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Program on ECU_03                                            */
+/* Author      : Autosar_Group_03                                             */
+/* Note        : TASK_MIRROR_RIGHT is extended task. Activating this task is  */
+/*               autostart. The event that awakens this task is               */
+/*               Rte_DRE_ChangeRight - OSEvent_ChangeRight                    */
+/******************************************************************************/
 TASK (TASK_MIRROR_RIGHT) {
     VAR(EventMaskType, AUTOMATIC) Event;
 

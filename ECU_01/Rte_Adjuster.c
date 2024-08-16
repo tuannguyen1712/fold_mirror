@@ -17,7 +17,6 @@
 #include "Rte_SwcAdjuster.h"
 #include "DataType.h"
 
-
 VAR(buttonValues, AUTOMATIC) buttonArrayVal;
 
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_PP_Position_ButtonArray( VAR(buttonValues, AUTOMATIC) button ) {
