@@ -17,7 +17,6 @@
 #include "Rte_SwcAdjuster.h"
 #include "DataType.h"
 
-
 VAR(buttonValues, AUTOMATIC) buttonArrayVal;
 
 /******************************************************************************/

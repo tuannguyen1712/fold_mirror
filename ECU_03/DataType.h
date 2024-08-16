@@ -2,10 +2,10 @@
 #define DATATYPE_H
 
 typedef struct {
-    uint8_t Fold;
-    uint8_t Yaw;
-    uint8_t Pitch;
-} Angles_t;
+    uint8_t fold;
+    uint8_t yaw;
+    uint8_t pitch;
+} angles_t;
 
 
 #endif
