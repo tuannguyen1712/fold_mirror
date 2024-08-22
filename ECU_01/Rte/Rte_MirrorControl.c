@@ -98,6 +98,25 @@ FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_WriteBlock( P2CONST(AUTOSAR_Angle
     // Handle the return value to check if the operation was successful
     return ret_val;
 }
+
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Call_Dem_SetEventStatus                                  */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Set status of diagnostic event                               */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Note        :                                                              */
+/******************************************************************************/
+
+FUNC(Std_ReturnType , RTE_CODE) Rte_Call_Dem_SetEventStatus(Dem_EventIdType eventId, Dem_EventStatusType eventStatus) 
+{
+    VAR(Std_ReturnType, AUTOMATIC) ret_val;
+    ret_val = Dem_SetEventStatus(eventId, eventStatus);
+    return ret_val;
+}
+
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
