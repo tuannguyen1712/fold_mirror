@@ -210,8 +210,11 @@ FUNC(void, RTE_CODE) UpdatePossition(void)
         }
         Rte_Call_Dem_SetEventStatus(MIRROR_LEFT_RIGHT_BUTTON_ERROR_EVENT, DEM_EVENT_STATUS_PASSED);
     }
-    else {
+    else if (button[0] && button[1]){
         Rte_Call_Dem_SetEventStatus(MIRROR_LEFT_RIGHT_BUTTON_ERROR_EVENT, DEM_EVENT_STATUS_FAILED);
+    }
+    else {
+        Rte_Call_Dem_SetEventStatus(MIRROR_LEFT_RIGHT_BUTTON_ERROR_EVENT, DEM_EVENT_STATUS_PASSED);
     }
 
     // Update new data to NVM
