@@ -59,9 +59,14 @@ FUNC(Std_ReturnType, AUTOMATIC) Rte_Read_RP_Setting_ButtonArray( P2VAR(buttonVal
 FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( P2VAR(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
-
+    NvM_RequestResultType RequestResultPtr;
+    NvM_ReadBlock(NV_ANGLE_BLOCK_ID, DataBuffer); 
     // Call the NvM_ReadBlock function with the specified BlockId, buffer, and length
-    ret_val = NvM_ReadBlock(NV_ANGLE_BLOCK_ID, DataBuffer);
+    
+    do {
+        NvM_GetErrorStatus(NV_ANGLE_BLOCK_ID, &RequestResultPtr);
+    }
+    while ( RequestResultPtr != NVM_REQ_PENDING);
 
     // Handle the return value to check if the operation was successful
     return ret_val;
@@ -82,8 +87,15 @@ FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( P2VAR(AUTOSAR_Angle, A
 FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_WriteBlock( P2CONST(AUTOSAR_Angle, AUTOMATIC, RTE_APPL_DATA) DataBuffer)
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
+    NvM_RequestResultType RequestResultPtr;
+
     // Call the NvM_WriteBlock function with the specified BlockId, buffer
-    ret_val = NvM_WriteBlock(NV_ANGLE_BLOCK_ID, DataBuffer);
+    NvM_WriteBlock(NV_ANGLE_BLOCK_ID, DataBuffer);
+
+    do {
+        NvM_GetErrorStatus(NV_ANGLE_BLOCK_ID, &RequestResultPtr);
+    }
+    while ( RequestResultPtr != NVM_REQ_PENDING);
     // Handle the return value to check if the operation was successful
     return ret_val;
 }
