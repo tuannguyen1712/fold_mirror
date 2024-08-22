@@ -69,6 +69,7 @@ FUNC(void, RTE_CODE) GetParram(void) {
 FUNC(void, RTE_CODE) GetUserOption_10ms(void) {
     // read pin state
     VAR(uint8, AUTOMATIC) button_state;
+    VAR(buttonValues, AUTOMIC) button;
 
     Rte_Call_RP_IO_IoHwAb_Dio_ReadChannelGroup(Dio_Button_GroupID, button_state);       // in Rte_Adjuster.h
     button[0] = (button_state & 0x01);                  // get bit 0

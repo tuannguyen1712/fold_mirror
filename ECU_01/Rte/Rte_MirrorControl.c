@@ -62,7 +62,6 @@ FUNC(NvM_ReturnType, RTE_CODE) Rte_Call_NV_NvM_ReadBlock( P2VAR(AUTOSAR_Angle, A
     NvM_RequestResultType RequestResultPtr;
     NvM_ReadBlock(NV_ANGLE_BLOCK_ID, DataBuffer); 
     // Call the NvM_ReadBlock function with the specified BlockId, buffer, and length
-    
     do {
         NvM_GetErrorStatus(NV_ANGLE_BLOCK_ID, &RequestResultPtr);
     }
